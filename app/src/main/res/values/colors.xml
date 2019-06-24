@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="white">#ffffffff</color>
+
+    <color name="red">#ffff0000</color>
+
+    <color name="brilliantSilver">#ffa9b0b4</color>
+    <color name="concreteSilver">#ffd2d1cd</color>
+    <color name="darkGreyBlue">#ff29465b</color>
+    <color name="lightGrey">#ffd8dcd6</color>
+
+    <color name="black">#ff000000</color>
+
+    <color name="brilliantBlue">#ff0075b3</color>
+    <color name="buttonBlue">#ff51BEFC</color>
+
+</resources>

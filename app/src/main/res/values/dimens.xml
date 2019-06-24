@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sign_in_button_width">300dp</dimen>
+    <dimen name="button_text_size">19dp</dimen>
+    <dimen name="sign_in_button_space_between_text_and_image">12dp</dimen>
+    <dimen name="dont_have_account_frame_text_size">16dp</dimen>
+    <dimen name="edit_text_height">45dp</dimen>
+</resources>
