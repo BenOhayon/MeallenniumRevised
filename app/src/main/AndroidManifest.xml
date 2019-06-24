@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/meallennium_launcher_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activities.HomeActivity"></activity>
+        <activity android:name=".ui.activities.HomeActivity" />
         <activity android:name=".ui.activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

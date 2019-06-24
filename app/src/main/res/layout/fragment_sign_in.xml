@@ -4,49 +4,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightGrey"
-    tools:context=".ui.fragments.SignUpFragment">
+    tools:context=".ui.fragments.SignInFragment">
 
     <com.benohayon.meallennium.ui.custom_views.LogoView
-        android:id="@+id/signUpScreenMeallenniumLogo"
+        android:id="@+id/signInScreenMeallenniumLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="45dp" />
 
-
     <EditText
-        android:id="@+id/signUpScreenEmailEditText"
+        android:id="@+id/signInScreenEmailEditText"
         style="@style/editTextStyle"
         android:layout_width="@dimen/sign_in_button_width"
         android:layout_height="@dimen/edit_text_height"
-        android:layout_below="@+id/signUpScreenMeallenniumLogo"
+        android:layout_below="@+id/signInScreenMeallenniumLogo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="65dp"
         android:background="@color/white"
-        android:hint="@string/sign_up_screen_email_edit_text_hint"
+        android:hint="@string/sign_in_screen_email_edit_text_hint"
         android:inputType="textEmailAddress"
         android:textSize="@dimen/button_text_size" />
 
     <EditText
-        android:id="@+id/signUpScreenPasswordEditText"
+        android:id="@+id/signInScreenPasswordEditText"
         android:layout_width="@dimen/sign_in_button_width"
         android:layout_height="@dimen/edit_text_height"
-        android:layout_below="@+id/signUpScreenEmailEditText"
+        android:layout_below="@+id/signInScreenEmailEditText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="45dp"
         android:background="@color/white"
-        android:hint="@string/sign_up_screen_password_edit_text_hint"
-        android:inputType="textPassword"
-        android:textSize="@dimen/button_text_size" />
-
-    <EditText
-        android:layout_width="@dimen/sign_in_button_width"
-        android:layout_height="@dimen/edit_text_height"
-        android:layout_below="@+id/signUpScreenPasswordEditText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:background="@color/white"
-        android:hint="@string/sign_up_screen_confirm_password_edit_text_hint"
+        android:hint="@string/sign_in_screen_password_edit_text_hint"
         android:inputType="textPassword"
         android:textSize="@dimen/button_text_size" />
 
@@ -66,7 +54,7 @@
             android:layout_marginEnd="15dp"
             android:background="@drawable/sign_in_styled_button_background"
             android:gravity="center"
-            android:text="@string/sign_up_screen_back_button_text"
+            android:text="@string/sign_in_screen_back_button_text"
             android:textSize="@dimen/button_text_size" />
 
         <com.benohayon.meallennium.ui.custom_views.stylable.StylableTextView
@@ -76,7 +64,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/sign_in_styled_button_background"
             android:gravity="center"
-            android:text="@string/sign_up_screen_sign_up_button_text"
+            android:text="@string/sign_in_screen_sign_up_button_text"
             android:textSize="@dimen/button_text_size" />
 
     </LinearLayout>

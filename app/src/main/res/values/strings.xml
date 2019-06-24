@@ -13,5 +13,12 @@
     <string name="sign_up_screen_email_edit_text_hint">Email</string>
     <string name="sign_up_screen_password_edit_text_hint">Password</string>
     <string name="sign_up_screen_confirm_password_edit_text_hint">Confirm Password</string>
+    <string name="sign_up_screen_sign_up_button_text">Sign Up</string>
+    <string name="sign_up_screen_back_button_text">Back</string>
+
+    <string name="sign_in_screen_email_edit_text_hint">Email</string>
+    <string name="sign_in_screen_password_edit_text_hint">Password</string>
+    <string name="sign_in_screen_sign_up_button_text">Sign In</string>
+    <string name="sign_in_screen_back_button_text">Back</string>
 
 </resources>

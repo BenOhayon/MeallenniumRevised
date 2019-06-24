@@ -39,7 +39,7 @@ class SignUpFragment : Fragment() {
         return view
     }
 
-    private fun fieldsValidated() : Boolean {
+    private fun fieldsValidated(): Boolean {
         var flag = true
         val invalidatedBackground = resources.getDrawable(R.drawable.invalidated_field_background, null)
 
