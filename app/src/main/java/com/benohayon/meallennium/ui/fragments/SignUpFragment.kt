@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 
 import com.benohayon.meallennium.R
+import com.benohayon.meallennium.framework.firebase.FirebaseManager
 import com.benohayon.meallennium.framework.utils.AlertPrompter
 import com.benohayon.meallennium.ui.custom_views.stylable.StylableTextView
 import kotlinx.android.synthetic.*
