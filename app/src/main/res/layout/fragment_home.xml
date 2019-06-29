@@ -1,56 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightGrey"
     tools:context=".ui.activities.HomeActivity">
 
-    <com.benohayon.meallennium.ui.custom_views.LogoView
-        android:id="@+id/homeScreenMeallenniumLogo"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="45dp" />
+        android:layout_height="wrap_content">
 
-    <com.benohayon.meallennium.ui.custom_views.FacebookSignInButton
-        android:id="@+id/homeScreenSignInWithFacebookButton"
-        style="@style/signInButtonStyle"
-        android:layout_width="@dimen/sign_in_button_width"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/homeScreenMeallenniumLogo"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="65dp"
-        android:background="@drawable/sign_in_styled_button_background" />
+        <com.benohayon.meallennium.ui.custom_views.LogoView
+            android:id="@+id/homeScreenMeallenniumLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="45dp" />
 
-    <com.benohayon.meallennium.ui.custom_views.GoogleSignInButton
-        android:id="@+id/homeScreenSignInWithGoogleButton"
-        style="@style/signInButtonStyle"
-        android:layout_width="@dimen/sign_in_button_width"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/homeScreenSignInWithFacebookButton"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/sign_in_styled_button_background" />
+        <com.benohayon.meallennium.ui.custom_views.FacebookSignInButton
+            android:id="@+id/homeScreenSignInWithFacebookButton"
+            style="@style/buttonStyle"
+            android:layout_width="@dimen/sign_in_button_width"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/homeScreenMeallenniumLogo"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="65dp" />
 
-    <com.benohayon.meallennium.ui.custom_views.stylable.StylableTextView
-        android:id="@+id/homeScreenSignInWithEmailButton"
-        style="@style/signInButtonStyle"
-        android:layout_width="@dimen/sign_in_button_width"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/homeScreenSignInWithGoogleButton"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/sign_in_styled_button_background"
-        android:backgroundTint="@color/buttonBlue"
-        android:gravity="center"
-        android:text="@string/home_screen_sign_in_with_email_and_password_button_text"
-        android:textSize="@dimen/button_text_size" />
+        <com.benohayon.meallennium.ui.custom_views.GoogleSignInButton
+            android:id="@+id/homeScreenSignInWithGoogleButton"
+            style="@style/buttonStyle"
+            android:layout_width="@dimen/sign_in_button_width"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/homeScreenSignInWithFacebookButton"
+            android:layout_marginTop="25dp" />
 
-    <com.benohayon.meallennium.ui.custom_views.DontHaveAccountFrame
-        android:id="@+id/homeScreenDontHaveAccountFrame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/homeScreenSignInWithEmailButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp" />
+        <com.benohayon.meallennium.ui.custom_views.stylable.StylableTextView
+            android:id="@+id/homeScreenSignInWithEmailButton"
+            style="@style/buttonStyle"
+            android:layout_width="@dimen/sign_in_button_width"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/homeScreenSignInWithGoogleButton"
+            android:layout_marginTop="25dp"
+            android:backgroundTint="@color/buttonBlue"
+            android:gravity="center"
+            android:text="@string/home_screen_sign_in_with_email_and_password_button_text"
+            android:textSize="@dimen/button_text_size" />
 
-</RelativeLayout>
+        <com.benohayon.meallennium.ui.custom_views.DontHaveAccountFrame
+            android:id="@+id/homeScreenDontHaveAccountFrame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/homeScreenSignInWithEmailButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp" />
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/homeScreenProgressBar"
+        android:layout_width="@dimen/progress_bar_width"
+        android:layout_height="@dimen/progress_bar_height"
+        android:layout_gravity="center"
+        android:visibility="invisible"/>
+
+</FrameLayout>

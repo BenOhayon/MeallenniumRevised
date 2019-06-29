@@ -1,39 +1,54 @@
 package com.benohayon.meallennium.ui.fragments
 
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-
+import android.widget.ProgressBar
+import androidx.fragment.app.Fragment
 import com.benohayon.meallennium.R
-import com.benohayon.meallennium.framework.firebase.FirebaseManager
+import com.benohayon.meallennium.framework.managers.FirebaseManager
+import com.benohayon.meallennium.framework.managers.UserManager
 import com.benohayon.meallennium.framework.utils.AlertPrompter
+import com.benohayon.meallennium.framework.utils.FragmentDispatcher
+import com.benohayon.meallennium.ui.activities.PostListActivity
 import com.benohayon.meallennium.ui.custom_views.stylable.StylableTextView
-import kotlinx.android.synthetic.*
 
 class SignUpFragment : Fragment() {
 
+    private val TAG = "SignUpActivity"
+
+    private var nameEt: EditText? = null
     private var emailEt: EditText? = null
     private var passwordEt: EditText? = null
     private var confirmPasswordEt: EditText? = null
     private var backButton: StylableTextView? = null
     private var signUpButton: StylableTextView? = null
+    private var progressBar: ProgressBar? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_sign_up, container, false)
 
+        nameEt = view.findViewById(R.id.signUpScreenNameEditText)
+        emailEt = view.findViewById(R.id.signUpScreenEmailEditText)
+        passwordEt = view.findViewById(R.id.signUpScreenPasswordEditText)
+        confirmPasswordEt = view.findViewById(R.id.signUpScreenConfirmPasswordEditText)
+        progressBar = view.findViewById(R.id.signUpScreenProgressBar)
         backButton = view.findViewById(R.id.signUpScreenBackButton)
+        signUpButton = view.findViewById(R.id.signUpScreenSignUpButton)
+
         backButton?.setOnClickListener {
-            activity?.supportFragmentManager?.popBackStack()
+            FragmentDispatcher.popFragmentFromBackStack(activity!!)
         }
 
-        signUpButton = view.findViewById(R.id.signUpScreenSignUpButton)
         signUpButton?.setOnClickListener {
             if (fieldsValidated()) {
-
+                progressBar?.visibility = View.VISIBLE
+                createUserWithEmailAndPassword(nameEt?.text?.toString().toString(), emailEt?.text?.toString().toString(), passwordEt?.text?.toString().toString())
             }
         }
 
@@ -44,26 +59,41 @@ class SignUpFragment : Fragment() {
         var flag = true
         val invalidatedBackground = resources.getDrawable(R.drawable.invalidated_field_background, null)
 
-        if (emailEt?.text?.length == 0) {
+        if (emailEt!!.text?.length == 0) {
             flag = false
-            emailEt?.background = invalidatedBackground
+            emailEt!!.background = invalidatedBackground
         }
 
-        if (passwordEt?.text?.length == 0) {
+        if (passwordEt!!.text?.length == 0) {
             flag = false
-            passwordEt?.background = invalidatedBackground
+            passwordEt!!.background = invalidatedBackground
         }
 
-        if (confirmPasswordEt?.text?.length == 0) {
+        if (confirmPasswordEt!!.text?.length == 0) {
             flag = false
-            confirmPasswordEt?.background = invalidatedBackground
+            confirmPasswordEt!!.background = invalidatedBackground
         }
 
-        if (passwordEt?.text?.toString() != confirmPasswordEt?.text?.toString()) {
+        if (passwordEt!!.text?.toString() != confirmPasswordEt?.text?.toString()) {
             flag = false
-            AlertPrompter.showInfoDialog(activity!!, "Validation Error", "Your password was not confirmed properly")
+            AlertPrompter.showInfoDialog(activity!!, getString(R.string.alert_field_validation_error_title), getString(R.string.alert_field_validation_error_message))
         }
 
         return flag
+    }
+
+    private fun createUserWithEmailAndPassword(name: String, email: String, password: String) {
+        FirebaseManager.createUserWithEmailAndPassword(name, email, password, onSuccess =  {
+            progressBar?.visibility = View.INVISIBLE
+            Log.d(TAG, "createUserWithEmailAndPassword: sign up success")
+            UserManager.storeLoginMethod(activity!!, FirebaseManager.LoginMethod.EmailPassword)
+            progressBar?.visibility = View.INVISIBLE
+            val toPostListActivity = Intent(activity!!, PostListActivity::class.java)
+            startActivity(toPostListActivity)
+        }, onFail = { errorMessage ->
+            progressBar?.visibility = View.INVISIBLE
+            Log.d(TAG, "createUserWithEmailAndPassword: sign up failed -> $errorMessage")
+            AlertPrompter.showInfoDialog(activity!!, getString(R.string.alert_user_authentication_failed_title), errorMessage)
+        })
     }
 }
