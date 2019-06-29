@@ -5,4 +5,6 @@
     <dimen name="sign_in_button_space_between_text_and_image">12dp</dimen>
     <dimen name="dont_have_account_frame_text_size">16dp</dimen>
     <dimen name="edit_text_height">45dp</dimen>
+    <dimen name="progress_bar_width">80dp</dimen>
+    <dimen name="progress_bar_height">80dp</dimen>
 </resources>

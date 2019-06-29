@@ -11,7 +11,7 @@
     <color name="brilliantSilver">#ffa9b0b4</color>
     <color name="concreteSilver">#ffd2d1cd</color>
     <color name="darkGreyBlue">#ff29465b</color>
-    <color name="lightGrey">#ffd8dcd6</color>
+    <color name="lightGrey">#ffd8dcd6</color> // used for app background color
 
     <color name="black">#ff000000</color>
 

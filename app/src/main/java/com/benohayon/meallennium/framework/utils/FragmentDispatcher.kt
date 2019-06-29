@@ -6,11 +6,15 @@ import com.benohayon.meallennium.R
 
 object FragmentDispatcher {
 
-    fun replaceFragmentToActivity(activity: FragmentActivity, fragment: Fragment) {
+    fun moveToFragment(activity: FragmentActivity, fragment: Fragment) {
         activity.supportFragmentManager.beginTransaction()
                 .replace(R.id.homeFragmentContainer, fragment)
                 .addToBackStack(null)
                 .commit()
+    }
+
+    fun popFragmentFromBackStack(activity: FragmentActivity) {
+        activity.supportFragmentManager.popBackStack()
     }
 
 }
