@@ -26,9 +26,17 @@ class SplashActivity : BaseActivity() {
         }, 3000)
     }
 
+    private fun openPostListScreen() {
+        Handler().postDelayed({
+            val toPostListActivity = Intent(this, PostListActivity::class.java)
+            startActivity(toPostListActivity)
+            finish()
+        }, 2500)
+    }
+
     private fun checkLoginStatus() {
         FirebaseManager.checkLoginStatus(this, userLoggedInCallback = {
-            startActivity(Intent(this, PostListActivity::class.java))
+            openPostListScreen()
         }, userLoggedOutCallback = {
             openHomeScreen()
         })

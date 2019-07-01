@@ -5,33 +5,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.PostListActivity">
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <com.benohayon.meallennium.ui.custom_views.stylable.StylableTextView
-            android:id="@+id/postListScreenSignOutButton"
-            style="@style/buttonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:textSize="22dp"
-            android:text="@string/post_list_screen_sign_out_button_text"/>
-
-    </LinearLayout>
+        android:layout_height="wrap_content" />
 
     <ProgressBar
         android:id="@+id/postListScreenProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/progress_bar_width"
+        android:layout_height="@dimen/progress_bar_height"
         android:layout_gravity="center"
         android:visibility="invisible"/>
 
