@@ -14,6 +14,6 @@ class HomeActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        FragmentDispatcher.moveToFragment(this, HomeFragment())
+        FragmentDispatcher.moveToFragment(this, HomeFragment(), R.id.homeFragmentContainer)
     }
 }

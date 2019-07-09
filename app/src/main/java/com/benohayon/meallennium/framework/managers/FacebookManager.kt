@@ -19,7 +19,7 @@ object FacebookManager {
         }
     }
 
-    fun signOutFromFacebook(onComplete: () -> Unit) {
+    fun signOut(onComplete: () -> Unit) {
         if (AccessToken.getCurrentAccessToken() == null) {
             return  // already logged out
         }
@@ -30,11 +30,11 @@ object FacebookManager {
         }).executeAsync()
     }
 
-    private fun loadFacebookUserDetails(context: Context, accessToken: AccessToken?, userLoggedInCallback: () -> Unit) {
+    fun loadFacebookUserDetails(context: Context, accessToken: AccessToken?, userLoggedInCallback: () -> Unit) {
         val loadUserDetailsRequest: GraphRequest = GraphRequest.newMeRequest(accessToken) { jsonObject, response ->
             // save the user account details
-            UserManager.storeFirstName(context, jsonObject.getString("first_name"))
-            UserManager.storeLastName(context, jsonObject.getString("last_name"))
+            val fullName = jsonObject.getString("first_name") + " " + jsonObject.getString("last_name")
+            UserManager.storeName(context, fullName)
             UserManager.storeEmail(context, jsonObject.getString("email"))
             userLoggedInCallback()
         }

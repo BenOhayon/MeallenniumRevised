@@ -10,24 +10,14 @@ object UserManager {
     const val EMAIL_KEY = "email"
     const val LOGIN_METHOD_KEY = "loginMethod"
 
-    fun storeFirstName(context: Context, firstName: String?) {
+    fun storeName(context: Context, firstName: String?) {
         MeallenniumSharedPreferences(context)
                 .storeString(FIRST_NAME_KEY, firstName)
     }
 
-    fun getFirstName(context: Context, defaultFirstName: String?): String? {
+    fun getName(context: Context, defaultFirstName: String? = "User Name"): String? {
         return MeallenniumSharedPreferences(context)
                 .getString(FIRST_NAME_KEY, defaultFirstName)
-    }
-
-    fun storeLastName(context: Context, lastName: String?) {
-        MeallenniumSharedPreferences(context)
-                .storeString(LAST_NAME_KEY, lastName)
-    }
-
-    fun getLastName(context: Context, defaultLastName: String?): String? {
-        return MeallenniumSharedPreferences(context)
-                .getString(LAST_NAME_KEY, defaultLastName)
     }
 
     fun storeEmail(context: Context, email: String?) {
@@ -35,7 +25,7 @@ object UserManager {
                 .storeString(EMAIL_KEY, email)
     }
 
-    fun getEmail(context: Context, defaultEmail: String?): String? {
+    fun getEmail(context: Context, defaultEmail: String? = "user@email.com"): String? {
         return MeallenniumSharedPreferences(context)
                 .getString(EMAIL_KEY, defaultEmail)
     }

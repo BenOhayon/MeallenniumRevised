@@ -20,8 +20,6 @@ import com.benohayon.meallennium.ui.custom_views.GoogleSignInButton
 import com.benohayon.meallennium.ui.custom_views.stylable.StylableTextView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
-import com.google.firebase.auth.GoogleAuthProvider
 
 
 class HomeFragment : Fragment() {
@@ -41,7 +39,7 @@ class HomeFragment : Fragment() {
         progressBar = view.findViewById(R.id.homeScreenProgressBar)
         dontHaveAccountFrame = view.findViewById(R.id.homeScreenDontHaveAccountFrame)
         dontHaveAccountFrame.setOnClickListener {
-            FragmentDispatcher.moveToFragment(activity!!, SignUpFragment())
+            FragmentDispatcher.moveToFragment(activity!!, SignUpFragment(), R.id.homeFragmentContainer)
         }
 
         facebookSignInButton = view.findViewById(R.id.homeScreenSignInWithFacebookButton)
@@ -65,9 +63,7 @@ class HomeFragment : Fragment() {
         googleSignInButton = view.findViewById(R.id.homeScreenSignInWithGoogleButton)
         googleSignInButton.setOnClickListener {
             progressBar.visibility = View.VISIBLE
-            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestEmail()
-                    .build()
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build()
             val googleSignInClient = GoogleSignIn.getClient(activity!!, gso)
             val signInIntent = googleSignInClient.signInIntent
             startActivityForResult(signInIntent, GOOGLE_SIGN_IN_REQUEST_CODE)
@@ -75,7 +71,7 @@ class HomeFragment : Fragment() {
 
         signInWithEmailButton = view.findViewById(R.id.homeScreenSignInWithEmailButton)
         signInWithEmailButton.setOnClickListener {
-            FragmentDispatcher.moveToFragment(activity!!, SignInFragment())
+            FragmentDispatcher.moveToFragment(activity!!, SignInFragment(), R.id.homeFragmentContainer)
         }
 
         return view
@@ -83,33 +79,18 @@ class HomeFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == GOOGLE_SIGN_IN_REQUEST_CODE) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                // Google Sign In was successful, authenticate with Firebase
-                val account = task.getResult(ApiException::class.java)
-
-                // move to main activity
-                val credential = GoogleAuthProvider.getCredential(account?.id, null)
-                FirebaseManager.auth.signInWithCredential(credential)
-                        .addOnCompleteListener(activity!!) {
-                            if (task.isSuccessful) {
-                                // Sign in success, update UI with the signed-in user's information
-                                progressBar.visibility = View.INVISIBLE
-                                UserManager.storeLoginMethod(activity!!, FirebaseManager.LoginMethod.Google)
-                                UserManager.storeFirstName(activity!!, account?.displayName)
-                                UserManager.storeEmail(activity!!, account?.email)
-                                startActivity(Intent(activity!!, PostListActivity::class.java))
-                                activity!!.finish()
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                progressBar.visibility = View.INVISIBLE
-                                AlertPrompter.showInfoDialog(activity!!, getString(R.string.alert_user_authentication_failed_title), task.exception?.message!!)
-                            }
-                        }
-            } catch (e: ApiException) {
+            FirebaseManager.connectWithGoogle(activity!!, data, onSuccess = {account ->
+                // Sign in success, update UI with the signed-in user's information
                 progressBar.visibility = View.INVISIBLE
-                AlertPrompter.showInfoDialog(activity!!, getString(R.string.alert_user_authentication_failed_title), e.message!!)
-            }
+                UserManager.storeLoginMethod(activity!!, FirebaseManager.LoginMethod.Google)
+                UserManager.storeName(activity!!, account?.displayName)
+                UserManager.storeEmail(activity!!, account?.email)
+                startActivity(Intent(activity!!, PostListActivity::class.java))
+                activity!!.finish()
+            }, onFail = {errorMessage ->
+                progressBar.visibility = View.INVISIBLE
+                AlertPrompter.showInfoDialog(activity!!, getString(R.string.alert_user_authentication_failed_title), errorMessage)
+            })
         } else
             FirebaseManager.setCallbackManagerOnActivityResult(requestCode, resultCode, data)
 
