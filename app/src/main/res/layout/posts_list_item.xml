@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/brilliantSilver" />
+
+    <com.benohayon.meallennium.ui.custom_views.stylable.StylableTextView
+        android:id="@+id/postListItemAuthorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="19dp"
+        tools:text="Author name" />
+
+    <com.benohayon.meallennium.ui.custom_views.stylable.StylableTextView
+        android:id="@+id/postListItemPostContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:textSize="17dp"
+        tools:text="This is the content of this post" />
+
+    <ImageView
+        android:id="@+id/postListItemPostImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:src="@mipmap/ic_launcher" />
+
+</LinearLayout>
