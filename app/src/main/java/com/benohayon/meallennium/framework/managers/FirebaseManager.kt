@@ -28,7 +28,7 @@ object FirebaseManager {
     private val firebaseUser: FirebaseUser?
         get() = auth.currentUser
 
-    val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val callbackManager: CallbackManager = CallbackManager.Factory.create()
     private val facebookLoginManager: LoginManager = LoginManager.getInstance()
 
@@ -162,4 +162,7 @@ object FirebaseManager {
         }
     }
 
+    fun getCurrentUser(): FirebaseUser {
+        return auth.currentUser!!
+    }
 }

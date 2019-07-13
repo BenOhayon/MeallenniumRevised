@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="45dp">
 
-        <com.benohayon.meallennium.ui.custom_views.LogoView
+        <com.benohayon.meallennium.ui.custom_views.AppTitleView
             android:id="@+id/signInScreenMeallenniumLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,25 +49,28 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:orientation="horizontal"
-            android:padding="15dp">
+            android:orientation="horizontal">
 
             <com.benohayon.meallennium.ui.custom_views.stylable.StylableTextView
                 android:id="@+id/signInScreenBackButton"
-                style="@style/buttonStyle"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
+                android:background="@drawable/styled_button_background"
                 android:gravity="center"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:text="@string/sign_in_screen_back_button_text"
                 android:textSize="@dimen/button_text_size" />
 
             <com.benohayon.meallennium.ui.custom_views.stylable.StylableTextView
                 android:id="@+id/signInScreenSignInButton"
-                style="@style/buttonStyle"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/styled_button_background"
                 android:gravity="center"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:text="@string/sign_in_screen_sign_up_button_text"
                 android:textSize="@dimen/button_text_size" />
 
@@ -80,6 +83,6 @@
         android:layout_width="@dimen/progress_bar_width"
         android:layout_height="@dimen/progress_bar_height"
         android:layout_gravity="center"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
 </FrameLayout>

@@ -11,9 +11,15 @@ import com.benohayon.meallennium.ui.custom_views.stylable.StylableTextView
 
 class MeallenniumTopActionBar : LinearLayout {
 
+    var centerText: CharSequence
+        get() = centerTextView.text
+        set(value) {
+            centerTextView.text = value
+        }
+
     private lateinit var leftButton: ImageView
     private lateinit var rightButton: ImageView
-    private lateinit var centerText: StylableTextView
+    private lateinit var centerTextView: StylableTextView
 
     constructor(context: Context?) : super(context) {
         init(context)
@@ -36,7 +42,7 @@ class MeallenniumTopActionBar : LinearLayout {
     private fun initUI() {
         leftButton = findViewById(R.id.topActionBarLeftButton)
         rightButton = findViewById(R.id.topActionBarRightButton)
-        centerText = findViewById(R.id.topActionBarCenterText)
+        centerTextView = findViewById(R.id.topActionBarCenterText)
     }
 
     fun setLeftButtonResource(resource: Int) {
@@ -45,10 +51,6 @@ class MeallenniumTopActionBar : LinearLayout {
 
     fun setRightButtonResource(resource: Int) {
         rightButton.setImageResource(resource)
-    }
-
-    fun setCenterText(text: String) {
-        centerText.text = text
     }
 
     fun setLeftButtonOnClickListener(onClick: (View) -> Unit) {

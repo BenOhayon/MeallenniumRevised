@@ -8,5 +8,7 @@
     <dimen name="progress_bar_width">50dp</dimen>
     <dimen name="progress_bar_height">50dp</dimen>
     <dimen name="navigation_drawer_width">330dp</dimen>
-    <dimen name="meallennium_top_action_bar_image_dimensions">50dp</dimen>
+    <dimen name="meallennium_top_action_bar_image_dimensions">35dp</dimen>
+    <dimen name="about_screen_version_text_size">20dp</dimen>
+    <dimen name="about_screen_logo_dimensions">250dp</dimen>
 </resources>

@@ -8,7 +8,6 @@
     <string name="home_screen_sign_in_with_facebook_button_text">Sign in with facebook</string>
     <string name="home_screen_sign_in_with_google_button_text">Sign in with Google</string>
     <string name="home_screen_sign_in_with_email_and_password_button_text">Sign in with Email</string>
-
     <string name="home_screen_dont_have_account_frame_sign_up_text_1">don\'t have an account?</string>
     <string name="home_screen_dont_have_account_frame_sign_up_text_2">\ \ Sign up</string>
 
@@ -44,5 +43,10 @@
     <string name="navigation_drawer_menu_sign_out_option_text">Sign Out</string>
     <string name="navigation_drawer_menu_share_post_option_text">Share Post…</string>
     <string name="navigation_drawer_menu_actions_group_text">Actions</string>
+    <string name="navigation_drawer_menu_about_option_text">About</string>
+
+    <string name="about_screen_description_text">Meallennium allows customers, restaurants and bakeries\nto share new menus and experiences\n\n\n\n\nContact us in\n<b>www.meallennium.com/contact</b>\nfor further questions</string>
+    <string name="about_screen_version_title_text">Version:</string>
+    <string name="about_screen_top_action_bar_center_text">About Meallennium</string>
 
 </resources>

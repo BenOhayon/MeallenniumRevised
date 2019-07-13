@@ -47,7 +47,7 @@ class SignInFragment : Fragment() {
 
         signInButton.setOnClickListener {
             progressBar.visibility = View.VISIBLE
-            signInWithEmailAndPassword(emailEt.text?.toString().toString(), passwordEt.text?.toString().toString())
+            signInWithEmailAndPassword(emailEt.text.toString(), passwordEt.text.toString())
         }
 
         backButton.setOnClickListener {
@@ -61,12 +61,12 @@ class SignInFragment : Fragment() {
         var flag = true
         val invalidatedBackground = resources.getDrawable(R.drawable.invalidated_field_background, null)
 
-        if (emailEt.text?.length == 0) {
+        if (emailEt.text.isEmpty()) {
             flag = false
             emailEt.background = invalidatedBackground
         }
 
-        if (passwordEt.text?.length == 0) {
+        if (passwordEt.text.isEmpty()) {
             flag = false
             passwordEt.background = invalidatedBackground
         }
@@ -80,6 +80,8 @@ class SignInFragment : Fragment() {
                 progressBar.visibility = View.INVISIBLE
                 Log.d(TAG, "sign in with email success")
                 UserManager.storeLoginMethod(activity!!, FirebaseManager.LoginMethod.EmailPassword)
+                UserManager.storeEmail(activity!!, email)
+                UserManager.storeName(activity!!, FirebaseManager.getCurrentUser().displayName)
                 val toPostListActivity = Intent(activity!!, PostListActivity::class.java)
                 startActivity(toPostListActivity)
             }, { errorMessage ->
