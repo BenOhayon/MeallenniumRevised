@@ -8,16 +8,18 @@
         <item
             android:id="@+id/navigationDrawerMenuMyPostsOption"
             android:title="@string/navigation_drawer_menu_my_posts_option_text" />
-        <item
-            android:id="@+id/navigationDrawerMenuSettingsOption"
-            android:title="@string/navigation_drawer_menu_settings_option_text" />
     </group>
 
     <item android:title="@string/navigation_drawer_menu_actions_group_text">
         <menu>
             <item
-                android:id="@+id/navigationDrawerMenuSharePostOption"
-                android:title="@string/navigation_drawer_menu_share_post_option_text" />
+                android:id="@+id/navigationDrawerMenuSettingsOption"
+                android:title="@string/navigation_drawer_menu_settings_option_text" />
+
+            <item
+                android:id="@+id/navigationDrawerMenuAboutOption"
+                android:title="@string/navigation_drawer_menu_about_option_text" />
+
             <item
                 android:id="@+id/navigationDrawerMenuSignOutOption"
                 android:title="@string/navigation_drawer_menu_sign_out_option_text" />

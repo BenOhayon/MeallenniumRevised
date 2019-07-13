@@ -12,7 +12,7 @@
         android:layout_width="@dimen/meallennium_top_action_bar_image_dimensions"
         android:layout_height="@dimen/meallennium_top_action_bar_image_dimensions"
         android:layout_weight="0.2"
-        android:src="@mipmap/navigation_drawer_icon" />
+        tools:src="@mipmap/navigation_drawer_icon" />
 
     <com.benohayon.meallennium.ui.custom_views.stylable.StylableTextView
         android:id="@+id/topActionBarCenterText"
@@ -29,6 +29,6 @@
         android:layout_width="@dimen/meallennium_top_action_bar_image_dimensions"
         android:layout_height="@dimen/meallennium_top_action_bar_image_dimensions"
         android:layout_weight="0.2"
-        android:src="@mipmap/search_icon"/>
+        tools:src="@mipmap/search_icon"/>
 
 </LinearLayout>

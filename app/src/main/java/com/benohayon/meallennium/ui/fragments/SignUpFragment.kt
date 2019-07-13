@@ -83,14 +83,17 @@ class SignUpFragment : Fragment() {
     }
 
     private fun createUserWithEmailAndPassword(name: String, email: String, password: String) {
-        FirebaseManager.createUserWithEmailAndPassword(name, email, password, onSuccess =  {
-            progressBar.visibility = View.INVISIBLE
-            Log.d(TAG, "createUserWithEmailAndPassword: sign up success")
-            UserManager.storeLoginMethod(activity!!, FirebaseManager.LoginMethod.EmailPassword)
-            progressBar.visibility = View.INVISIBLE
-            val toPostListActivity = Intent(activity!!, PostListActivity::class.java)
-            startActivity(toPostListActivity)
-        }, onFail = { errorMessage ->
+        FirebaseManager.createUserWithEmailAndPassword(name, email, password,
+                onSuccess = {
+                    progressBar.visibility = View.INVISIBLE
+                    Log.d(TAG, "createUserWithEmailAndPassword: sign up success")
+                    UserManager.storeLoginMethod(activity!!, FirebaseManager.LoginMethod.EmailPassword)
+                    UserManager.storeName(activity!!, name)
+                    UserManager.storeEmail(activity!!, email)
+                    progressBar.visibility = View.INVISIBLE
+                    val toPostListActivity = Intent(activity!!, PostListActivity::class.java)
+                    startActivity(toPostListActivity)
+                }, onFail = { errorMessage ->
             progressBar.visibility = View.INVISIBLE
             Log.d(TAG, "createUserWithEmailAndPassword: sign up failed -> $errorMessage")
             AlertPrompter.showInfoDialog(activity!!, getString(R.string.alert_user_authentication_failed_title), errorMessage)

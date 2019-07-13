@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
-import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.benohayon.meallennium.R
@@ -63,6 +62,8 @@ class PostListActivity : BaseActivity() {
         userNameTextView.text = UserManager.getName(this)
 
         navigationView.setNavigationItemSelectedListener { item: MenuItem ->
+            drawerLayout.closeDrawer(GravityCompat.START)
+
             when (item.itemId) {
                 R.id.navigationDrawerMenuHomeOption ->
                     FragmentDispatcher.moveToFragment(this, PostListFragment(), R.id.postListActivityContainer)
@@ -73,29 +74,34 @@ class PostListActivity : BaseActivity() {
                 R.id.navigationDrawerMenuSettingsOption ->
                     FragmentDispatcher.moveToFragment(this, SettingsFragment(), R.id.postListActivityContainer)
 
-                R.id.navigationDrawerMenuSharePostOption ->
-                    Toast.makeText(this, "Sharing a post!", Toast.LENGTH_SHORT).show()
+                R.id.navigationDrawerMenuSignOutOption -> requestSignOut()
 
-                R.id.navigationDrawerMenuSignOutOption ->
-                    AlertPrompter.showConfirmationDialog(this, getString(R.string.alert_sign_out_title), getString(R.string.alert_sign_out_message), onYesClick = { dialog, which ->
-                        progressBar.visibility = View.VISIBLE
-                        FirebaseManager.signOut(this) {
-                            progressBar.visibility = View.INVISIBLE
-                            startActivity(Intent(this, HomeActivity::class.java))
-                            finish()
-                        }
-                    })
+                R.id.navigationDrawerMenuAboutOption -> {
+                    startActivity(Intent(this, AboutActivity::class.java))
+                }
             }
 
-            drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
+    }
+
+    private fun requestSignOut() {
+        AlertPrompter.showConfirmationDialog(this, getString(R.string.alert_sign_out_title), getString(R.string.alert_sign_out_message),
+                onYesClick = { dialog, which ->
+                    progressBar.visibility = View.VISIBLE
+                    FirebaseManager.signOut(this) {
+                        progressBar.visibility = View.INVISIBLE
+                        startActivity(Intent(this, HomeActivity::class.java))
+                        finish()
+                    }
+                })
     }
 
     private fun initTopBar() {
         meallenniumTopActionBar = findViewById(R.id.postListActivityTopBar)
         meallenniumTopActionBar.setLeftButtonResource(R.mipmap.navigation_drawer_icon)
-        meallenniumTopActionBar.setCenterText(getString(R.string.post_list_screen_top_action_bar_center_text))
+        meallenniumTopActionBar.setRightButtonResource(R.mipmap.search_icon)
+        meallenniumTopActionBar.centerText = getString(R.string.post_list_screen_top_action_bar_center_text)
         meallenniumTopActionBar.setLeftButtonOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
@@ -109,6 +115,6 @@ class PostListActivity : BaseActivity() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START))
             drawerLayout.closeDrawer(GravityCompat.START)
         else
-            super.onBackPressed()
+            requestSignOut()
     }
 }
