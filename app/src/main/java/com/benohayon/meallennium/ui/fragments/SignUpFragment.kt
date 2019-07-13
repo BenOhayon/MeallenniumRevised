@@ -2,7 +2,10 @@ package com.benohayon.meallennium.ui.fragments
 
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -41,12 +44,31 @@ class SignUpFragment : Fragment() {
         backButton = view.findViewById(R.id.signUpScreenBackButton)
         signUpButton = view.findViewById(R.id.signUpScreenSignUpButton)
 
+        emailEt.addTextChangedListener(object: TextWatcher {
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (isValidEmail(s!!))
+                    emailEt.setTextColor(Color.BLACK)
+                else
+                    emailEt.setTextColor(Color.RED)
+            }
+
+        })
+
         backButton.setOnClickListener {
             FragmentDispatcher.popFragmentFromBackStack(activity!!)
         }
 
         signUpButton.setOnClickListener {
-            if (fieldsValidated()) {
+            if (areFieldsValidated()) {
                 progressBar.visibility = View.VISIBLE
                 createUserWithEmailAndPassword(nameEt.text.toString(), emailEt.text.toString(), passwordEt.text.toString())
             }
@@ -55,7 +77,12 @@ class SignUpFragment : Fragment() {
         return view
     }
 
-    private fun fieldsValidated(): Boolean {
+    private fun isValidEmail(email: CharSequence): Boolean {
+        val emailValidPattern = Regex("^[a-zA-Z0-9]+(\\.[a-zA-Z0-9])*@[a-zA-Z]+(\\.com|\\.co\\.il)$")
+        return email.matches(emailValidPattern)
+    }
+
+    private fun areFieldsValidated(): Boolean {
         var flag = true
         val invalidatedBackground = resources.getDrawable(R.drawable.invalidated_field_background, null)
 
